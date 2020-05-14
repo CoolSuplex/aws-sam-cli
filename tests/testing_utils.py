@@ -19,6 +19,7 @@ TIMEOUT = 300
 
 
 def run_command(command_list, cwd=None, env=None, timeout=TIMEOUT) -> CommandResult:
+    LOG.info(command_list)
     process_execute = Popen(command_list, cwd=cwd, env=env, stdout=PIPE, stderr=PIPE)
     try:
         stdout_data, stderr_data = process_execute.communicate(timeout=timeout)
@@ -33,6 +34,7 @@ def run_command(command_list, cwd=None, env=None, timeout=TIMEOUT) -> CommandRes
 
 
 def run_command_with_input(command_list, stdin_input, timeout=TIMEOUT) -> CommandResult:
+    LOG.info(command_list)
     process_execute = Popen(command_list, stdout=PIPE, stderr=PIPE, stdin=PIPE)
     try:
         stdout_data, stderr_data = process_execute.communicate(stdin_input, timeout=timeout)
